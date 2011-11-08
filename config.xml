@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    R Service Bus Control Pad
+    
+    Copyright (c) Copyright of OpenAnalytics BVBA, 2010-2011
+ 
+    ===========================================================================
+ 
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+ 
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+ 
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>
+        
+    @author rsb.development@openanalytics.eu
+-->
+<widget xmlns="http://www.w3.org/ns/widgets"
+  xmlns:gap="http://phonegap.com/ns/1.0"
+  id="eu.openanalytics.rsb.control-pad"
+  version="1.0.0">
+
+  <name>RSB Control Pad</name>
+
+  <description>
+    An application for controlling RSB nodes.
+  </description>
+
+  <author href="http://www.openanalytics.eu/r-service-bus" email="rsb.development@openanalytics.eu">
+    RSB Development
+  </author>
+
+  <gap:platforms>
+    <gap:platform name="android" minVersion="2.1" />
+    <gap:platform name="webos" />
+    <gap:platform name="symbian.wrt" />
+    <gap:platform name="blackberry" project="widgets"/>
+  </gap:platforms>
+
+  <icon src="icon.png" gap:role="default" />
+  <gap:splash src="splash.png">
+
+  <feature name="http://api.phonegap.com/1.0/network"/>
+</widget>

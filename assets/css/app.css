@@ -1,0 +1,70 @@
+/*
+ *   R Service Bus Control Pad
+ *   
+ *   Copyright (c) Copyright of OpenAnalytics BVBA, 2010-2011
+ *
+ *   ===========================================================================
+ *
+ *   This program is free software: you can redistribute it and/or modify
+ *   it under the terms of the GNU Affero General Public License as published by
+ *   the Free Software Foundation, either version 3 of the License, or
+ *   (at your option) any later version.
+ *
+ *   This program is distributed in the hope that it will be useful,
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *   GNU Affero General Public License for more details.
+ *
+ *   You should have received a copy of the GNU Affero General Public License
+ *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ *   @author rsb.development@openanalytics.eu
+ */
+body {
+  background: #000;
+  margin: 0;
+  font: 18px Helvetica;
+  text-align: center;
+  color: #eee;
+}
+
+.server .name {
+  float:left;
+  margin-left: .5em;
+}
+
+.server .status_unknown {
+  float:left;
+  overflow: visible;
+  -webkit-mask: 0 0 url('../img/status_unknown.png') no-repeat;
+  -webkit-mask-size: 1.3em;
+  background-color: #005500;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #FF3300), color-stop(2%, #FF6600), color-stop(100%, #FF3300));
+  background-image: linear-gradient(#FF3300, #FF6600 2%, #FF3300);
+  width: 1.3em;
+  height: 1.3em;
+}
+
+.server .status_good {
+  float:left;
+  overflow: visible;
+  -webkit-mask: 0 0 url('../img/status_good.png') no-repeat;
+  -webkit-mask-size: 1.3em;
+  background-color: #005500;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #005500), color-stop(2%, #00AA00), color-stop(100%, #005500));
+  background-image: linear-gradient(#005500, #00AA00 2%, #005500);
+  width: 1.3em;
+  height: 1.3em;
+}
+
+.server .status_bad {
+  float:left;
+  overflow: visible;
+  -webkit-mask: 0 0 url('../img/status_bad.png') no-repeat;
+  -webkit-mask-size: 1.3em;
+  background-color: #005500;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #550000), color-stop(2%, #AA0000), color-stop(100%, #550000));
+  background-image: linear-gradient(#550000, #AA0000 2%, #550000);
+  width: 1.3em;
+  height: 1.3em;
+}
