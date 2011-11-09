@@ -20,12 +20,15 @@
  *
  *   @author rsb.development@openanalytics.eu
  */
-body {
-  background: #000;
-  margin: 0;
-  font: 18px Helvetica;
-  text-align: center;
-  color: #eee;
+
+/* Sencha Overrides */
+.x-toolbar-dark {
+  background-image: url('../img/toolbarBg.png');
+}
+
+/* App specific */
+.server-list {
+  background-image: url('../img/panelBg.png');
 }
 
 .server .name {
@@ -36,7 +39,7 @@ body {
 .server .status_unknown {
   float:left;
   overflow: visible;
-  -webkit-mask: 0 0 url('../img/status_unknown.png') no-repeat;
+  -webkit-mask: 0 0 url('../img/statusUnknown.png') no-repeat;
   -webkit-mask-size: 1.3em;
   background-color: #005500;
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #FF3300), color-stop(2%, #FF6600), color-stop(100%, #FF3300));
@@ -48,7 +51,7 @@ body {
 .server .status_good {
   float:left;
   overflow: visible;
-  -webkit-mask: 0 0 url('../img/status_good.png') no-repeat;
+  -webkit-mask: 0 0 url('../img/statusGood.png') no-repeat;
   -webkit-mask-size: 1.3em;
   background-color: #005500;
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #005500), color-stop(2%, #00AA00), color-stop(100%, #005500));
@@ -60,7 +63,7 @@ body {
 .server .status_bad {
   float:left;
   overflow: visible;
-  -webkit-mask: 0 0 url('../img/status_bad.png') no-repeat;
+  -webkit-mask: 0 0 url('../img/statusBad.png') no-repeat;
   -webkit-mask-size: 1.3em;
   background-color: #005500;
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #550000), color-stop(2%, #AA0000), color-stop(100%, #550000));

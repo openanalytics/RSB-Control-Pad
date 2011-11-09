@@ -48,6 +48,7 @@ app.views.ServersList = Ext.extend(Ext.Panel, {
   items: [
     {
       xtype: 'list',
+      cls: 'server-list',
       store: app.stores.servers,
       itemTpl: "<div class='server'><div class='status_{status}'></div><div class='name'>{name}</div></div>",
       onItemDisclosure: function (record) {
