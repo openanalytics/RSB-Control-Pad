@@ -29,38 +29,33 @@ Ext.data.ProxyMgr.registerType("serverstorage",
     
     read: function(operation, callback, scope) {
       var thisProxy = this;
-      // TODO read actual servers from storage
-      var servers = [
-        new thisProxy.model({
-          id: 1,
-          name: 'localhost-8880',
-          url: 'http://localhost:8888/rsb',
-          status: "unknown"
-        }),
-        new thisProxy.model({
-          id: 2,
-          name: 'localhost-8881',
-          url: 'http://localhost:8881/rsb',
-          status: "good"
-        }),
-        new thisProxy.model({
-          id: 3,
-          name: 'localhost-8882',
-          url: 'http://localhost:8882/rsb',
-          status: "bad"
-        })
-      ];
       
-      operation.resultSet = new Ext.data.ResultSet({
-        records: servers,
-        total  : servers.length,
-        loaded : true
+      SERVER_STORE.all(function(stored_servers) {
+        var servers = [];
+          
+        for (var i = 0; i < stored_servers.length; i++) {
+          var stored_server = stored_servers[i];
+          var server = new thisProxy.model({
+            url: stored_server.url,
+            username: stored_server.username,
+            password: stored_server.password,
+            name: stored_server.name,
+            status: stored_server.status
+          });
+          servers.push(server);
+        }
+          
+        operation.resultSet = new Ext.data.ResultSet({
+          records: servers,
+          total  : servers.length,
+          loaded : true
+        });
+        operation.setSuccessful();
+        operation.setCompleted();
+        if (typeof callback == "function") {
+          callback.call(scope || thisProxy, operation);
+        }
       });
-      operation.setSuccessful();
-      operation.setCompleted();
-      if (typeof callback == "function") {
-        callback.call(scope || thisProxy, operation);
-      }
     },
     
     update: function(operation, callback, scope) {
@@ -75,11 +70,10 @@ Ext.data.ProxyMgr.registerType("serverstorage",
  
 app.models.Server = Ext.regModel("app.models.Server", {
   fields: [
-    {name: "id", type: "int"},
-    {name: "name", type: "string"},
     {name: "url", type: "string"},
     {name: "username", type: "string"},
     {name: "password", type: "string"},
+    {name: "name", type: "string"},
     {name: "status", type: "string"} // good | bad | unknown
   ],
   proxy: {
