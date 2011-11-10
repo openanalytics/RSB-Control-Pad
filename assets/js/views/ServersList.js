@@ -29,7 +29,7 @@ app.views.ServersList = Ext.extend(Ext.Panel, {
       {xtype:'spacer'},
       {xtype:'spacer'},
       {
-        id: 'new',
+        id: 'add',
         text: 'Add',
         ui: 'action',
         listeners: {
@@ -37,7 +37,7 @@ app.views.ServersList = Ext.extend(Ext.Panel, {
             console.log('Add listener called'); // FIXME remove
             Ext.dispatch({
               controller: app.controllers.servers,
-              action: 'new'
+              action: 'add'
             });
           }
         }
