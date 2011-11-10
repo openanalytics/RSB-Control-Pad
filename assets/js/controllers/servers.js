@@ -32,3 +32,5 @@ app.controllers.servers = new Ext.Controller({
     console.log('Controller add finished'); // FIXME remove
   }
 });
+
+console.log('servers controller created'); // FIXME remove
