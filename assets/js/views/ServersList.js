@@ -30,7 +30,7 @@ app.views.ServersList = Ext.extend(Ext.Panel, {
       {xtype:'spacer'},
       {
         id: 'new',
-        text: 'New',
+        text: 'Add',
         ui: 'action',
         listeners: {
           'tap': function () {

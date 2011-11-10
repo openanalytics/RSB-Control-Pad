@@ -33,6 +33,7 @@ app.views.Viewport = Ext.extend(Ext.Panel, {
         Ext.apply(this, {
             items: [
                 app.views.serversList,
+                app.views.newServer
             ]
         });
         app.views.Viewport.superclass.initComponent.apply(this, arguments);

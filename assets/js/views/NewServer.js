@@ -21,7 +21,7 @@
  *   @author rsb.development@openanalytics.eu
  */
 
-app.views.NewServer = Ext.extend(Ext.Panel, {
+app.views.NewServer = Ext.extend(Ext.form.FormPanel, {
   dockedItems: [{
     xtype: 'toolbar',
     title: 'New Server',
@@ -46,17 +46,21 @@ app.views.NewServer = Ext.extend(Ext.Panel, {
         ui: 'action',
         listeners: {
           'tap': function () {
-              //Ext.dispatch({
-              //    controller: app.controllers.servers,
-              //    action: 'edit',
-              //    id: this.record.getId()
-              //});
+            // FIXME pass username and password
+            var newRecords = app.stores.servers.add({url: app.views.newServer.fields.get('new_server_url').getValue()});
+            newRecords[0].save();
+            //Ext.dispatch({
+            //    controller: app.controllers.servers,
+            //    action: 'view',
+            //    id: this.record.getId()
+            //});
           }
         }
       }
     ]
   }],
   scroll: 'vertical',
+  submitOnAction: false,
   items: [
     {
       xtype: 'fieldset',
@@ -69,6 +73,7 @@ app.views.NewServer = Ext.extend(Ext.Panel, {
       },
       items: [
         {
+          id: 'new_server_url',
           xtype: 'textfield',
           name : 'url',
           label: 'URL',

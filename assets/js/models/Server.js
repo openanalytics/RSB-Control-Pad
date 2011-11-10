@@ -24,10 +24,22 @@
 Ext.data.ProxyMgr.registerType("serverstorage",
   Ext.extend(Ext.data.Proxy, {
     create: function(operation, callback, scope) {
-      // TODO implement
+      operation.setStarted();
+      var server = operation.records[0].data;
+      var thisProxy = this;
+      var serverUrl = server.url;
+      
+      SERVER_STORE.save({serverUrl: server}, function() {
+          operation.setCompleted();
+          operation.setSuccessful();
+          if (typeof callback == 'function') {
+              callback.call(scope || thisProxy, operation);
+          }
+      });
     },
     
     read: function(operation, callback, scope) {
+      operation.setStarted();
       var thisProxy = this;
       
       SERVER_STORE.all(function(stored_servers) {
@@ -82,5 +94,5 @@ app.models.Server = Ext.regModel("app.models.Server", {
 });
 
 app.stores.servers = new Ext.data.Store({
-    model: "app.models.Server"
+  model: "app.models.Server"
 });
