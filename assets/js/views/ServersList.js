@@ -34,11 +34,10 @@ app.views.ServersList = Ext.extend(Ext.Panel, {
         ui: 'action',
         listeners: {
           'tap': function () {
-            // TODO activate
-            //Ext.dispatch({
-            //  controller: app.controllers.servers,
-            //  action: 'new'
-            //});
+            Ext.dispatch({
+              controller: app.controllers.servers,
+              action: 'new'
+            });
           }
         }
       }

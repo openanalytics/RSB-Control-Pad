@@ -20,7 +20,7 @@
  *
  *   @author rsb.development@openanalytics.eu
  */
- 
+
 const SERVER_STORE = new Lawnchair({name:'servers', record:'server'}, function() {});
  
 Ext.regApplication({

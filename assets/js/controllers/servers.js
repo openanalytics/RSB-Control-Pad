@@ -20,21 +20,13 @@
  *
  *   @author rsb.development@openanalytics.eu
  */
-
-app.views.Viewport = Ext.extend(Ext.Panel, {
-    fullscreen: true,
-    layout: 'card',
-    cardSwitchAnimation: 'slide',
-    initComponent: function() {
-        Ext.apply(app.views, {
-            serversList: new app.views.ServersList(),
-            newServer: new app.views.NewServer(),
-        });
-        Ext.apply(this, {
-            items: [
-                app.views.serversList,
-            ]
-        });
-        app.views.Viewport.superclass.initComponent.apply(this, arguments);
-    }
+ 
+app.controllers.servers = new Ext.Controller({
+  index: function(options) {
+    app.views.viewport.setActiveItem(app.views.serversList, options.animation);
+  },
+      
+  new: function(options) {
+    app.views.viewport.setActiveItem(app.views.newServer, options.animation);
+  },
 });
