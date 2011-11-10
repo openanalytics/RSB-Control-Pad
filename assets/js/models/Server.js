@@ -24,6 +24,7 @@
 Ext.data.ProxyMgr.registerType("serverstorage",
   Ext.extend(Ext.data.Proxy, {
     create: function(operation, callback, scope) {
+      // TODO set new state to unknown
       operation.setStarted();
       var server = operation.records[0].data;
       var thisProxy = this;

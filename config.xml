@@ -46,5 +46,6 @@
   <icon src="icon.png" gap:role="default" />
   <gap:splash src="splash.png" />
 
-  <preference name="permissions" value="none"/>
+	<feature name="http://api.phonegap.com/1.0/network"/>
+	<feature name="http://api.phonegap.com/1.0/file"/>
 </widget>

@@ -34,6 +34,7 @@ app.views.ServersList = Ext.extend(Ext.Panel, {
         ui: 'action',
         listeners: {
           'tap': function () {
+            console.log('Add listener called'); // FIXME remove
             Ext.dispatch({
               controller: app.controllers.servers,
               action: 'new'
@@ -49,6 +50,7 @@ app.views.ServersList = Ext.extend(Ext.Panel, {
       xtype: 'list',
       cls: 'server-list',
       store: app.stores.servers,
+      // TODO if name is blank display url
       itemTpl: "<div class='server'><div class='status_{status}'></div><div class='name'>{name}</div></div>",
       onItemDisclosure: function (record) {
         // TODO activate
