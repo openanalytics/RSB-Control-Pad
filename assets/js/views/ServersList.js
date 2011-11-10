@@ -37,7 +37,8 @@ app.views.ServersList = Ext.extend(Ext.Panel, {
             console.log('Add listener started'); // FIXME remove
             Ext.dispatch({
               controller: app.controllers.servers,
-              action: 'add'
+              action: 'add',
+              animation: {type:'slide', direction:'left'}
             });
             console.log('Add listener finished'); // FIXME remove
           }

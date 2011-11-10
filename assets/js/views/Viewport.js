@@ -28,7 +28,7 @@ app.views.Viewport = Ext.extend(Ext.Panel, {
     initComponent: function() {
         Ext.apply(app.views, {
             serversList: new app.views.ServersList(),
-            newServer: new app.views.NewServer(),
+            newServer: new app.views.NewServer()
         });
         Ext.apply(this, {
             items: [
