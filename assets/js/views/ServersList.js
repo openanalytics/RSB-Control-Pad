@@ -51,13 +51,12 @@ app.views.ServersList = Ext.extend(Ext.Panel, {
       cls: 'server-list',
       store: app.stores.servers,
       itemTpl: "<div class='server'><div class='status_{status}'></div><div class='name'>{name}</div></div>",
-      onItemDisclosure: function (record) {
-        // TODO activate
-        //Ext.dispatch({
-        //  controller: app.controllers.servers,
-        //  action: 'show',
-        //  id: record.getId()
-        //});
+      onItemDisclosure: function(record) {
+        Ext.dispatch({
+         controller: app.controllers.servers,
+         action: 'info',
+         url: record.data.url
+        });
       }
     }    
   ],

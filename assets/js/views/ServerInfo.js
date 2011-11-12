@@ -27,6 +27,7 @@ app.views.ServerInfo = Ext.extend(Ext.form.FormPanel, {
     title: 'Server Info',
     items: [
       {
+        id: 'back',
         text: 'Back',
         ui: 'back',
         listeners: {
@@ -47,6 +48,7 @@ app.views.ServerInfo = Ext.extend(Ext.form.FormPanel, {
   submitOnAction: false,
   styleHtmlContent:true,
   items: [
+    // TODO add content
   ],
   initComponent: function() {
     // TODO fetch server info over HTTP

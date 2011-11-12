@@ -100,5 +100,11 @@ app.models.Server = Ext.regModel("app.models.Server", {
 });
 
 app.stores.servers = new Ext.data.Store({
-  model: "app.models.Server"
+  model: "app.models.Server",
+  
+  getByUrl: function(url) {
+    return (this.snapshot || this.data).findBy(function(record) {
+      return record.data.url === url;
+    });
+  }
 });
