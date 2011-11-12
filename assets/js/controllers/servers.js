@@ -27,10 +27,6 @@ app.controllers.servers = new Ext.Controller({
   },
       
   add: function(options) {
-    console.log('Controller add started'); // FIXME remove
     app.views.viewport.setActiveItem(app.views.newServer, options.animation);
-    console.log('Controller add finished'); // FIXME remove
   }
 });
-
-console.log('servers controller created'); // FIXME remove

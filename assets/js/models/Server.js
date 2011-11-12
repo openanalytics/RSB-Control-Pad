@@ -24,18 +24,23 @@
 Ext.data.ProxyMgr.registerType("serverstorage",
   Ext.extend(Ext.data.Proxy, {
     create: function(operation, callback, scope) {
-      // TODO set new state to unknown
       operation.setStarted();
       var server = operation.records[0].data;
+      
+      // by default server status is unknown and name is equals to url
+      // these values will change when communication with server happens
+      server.status = 'unknown';
+      server.name = server.url;
+      
       var thisProxy = this;
       var serverUrl = server.url;
       
       SERVER_STORE.save({serverUrl: server}, function() {
-          operation.setCompleted();
-          operation.setSuccessful();
-          if (typeof callback == 'function') {
-              callback.call(scope || thisProxy, operation);
-          }
+        operation.setCompleted();
+        operation.setSuccessful();
+        if (typeof callback == 'function') {
+            callback.call(scope || thisProxy, operation);
+        }
       });
     },
     
