@@ -20,21 +20,41 @@
  *
  *   @author rsb.development@openanalytics.eu
  */
- 
-app.controllers.servers = new Ext.Controller({
-  list: function(options) {
-    app.views.viewport.setActiveItem(app.views.serversList, options.animation);
+
+app.views.ServerInfo = Ext.extend(Ext.form.FormPanel, {
+  dockedItems: [{
+    xtype: 'toolbar',
+    title: 'Server Info',
+    items: [
+      {
+        text: 'Back',
+        ui: 'back',
+        listeners: {
+          'tap': function () {
+            Ext.dispatch({
+              controller: app.controllers.servers,
+              action: 'list',
+              animation: {type:'slide', direction:'right'}
+            });
+          }
+        }
+      },
+      {xtype:'spacer'},
+      {xtype:'spacer'}
+    ]
+  }],
+  scroll: 'vertical',
+  submitOnAction: false,
+  styleHtmlContent:true,
+  items: [
+  ],
+  initComponent: function() {
+    // TODO fetch server info over HTTP
+    app.views.ServerInfo.superclass.initComponent.apply(this, arguments);
   },
-  
-  info: function(options) {
-    var server = app.stores.servers.getByUrl(options.url);
-    if (server) {
-      app.views.serverInfo.updateWithRecord(contact);
-      app.views.viewport.setActiveItem(app.views.serverInfo, options.animation);
-    }
-  },
-      
-  add: function(options) {
-    app.views.viewport.setActiveItem(app.views.newServer, options.animation);
+  updateWithRecord: function(record) {
+    var toolbar = this.getDockedItems()[0];
+    toolbar.setTitle(record.get('name'));
+    toolbar.getComponent('back').record = record;
   }
 });

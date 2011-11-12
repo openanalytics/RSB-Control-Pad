@@ -33,7 +33,7 @@ app.views.NewServer = Ext.extend(Ext.form.FormPanel, {
           'tap': function () {
             Ext.dispatch({
               controller: app.controllers.servers,
-              action: 'index',
+              action: 'list',
               animation: {type:'slide', direction:'right'}
             });
           }
@@ -47,13 +47,14 @@ app.views.NewServer = Ext.extend(Ext.form.FormPanel, {
         listeners: {
           'tap': function () {
             // FIXME pass username and password
-            var newRecords = app.stores.servers.add({url: app.views.newServer.fields.get('new_server_url').getValue()});
+            var serverUrl = app.views.newServer.fields.get('new_server_url').getValue();
+            var newRecords = app.stores.servers.add({url: serverUrl});
             newRecords[0].save();
-            //Ext.dispatch({
-            //    controller: app.controllers.servers,
-            //    action: 'view',
-            //    id: this.record.getId()
-            //});
+            Ext.dispatch({
+              controller: app.controllers.servers,
+              action: 'info',
+              url: serverUrl
+            });
           }
         }
       }

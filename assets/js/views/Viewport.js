@@ -28,12 +28,14 @@ app.views.Viewport = Ext.extend(Ext.Panel, {
     initComponent: function() {
         Ext.apply(app.views, {
             serversList: new app.views.ServersList(),
-            newServer: new app.views.NewServer()
+            newServer: new app.views.NewServer(),
+            serverInfo: new app.views.ServerInfo()
         });
         Ext.apply(this, {
             items: [
                 app.views.serversList,
-                app.views.newServer
+                app.views.newServer,
+                app.views.serverInfo
             ]
         });
         app.views.Viewport.superclass.initComponent.apply(this, arguments);

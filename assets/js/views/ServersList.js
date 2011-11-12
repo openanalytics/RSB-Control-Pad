@@ -50,7 +50,6 @@ app.views.ServersList = Ext.extend(Ext.Panel, {
       xtype: 'list',
       cls: 'server-list',
       store: app.stores.servers,
-      // TODO if name is blank display url
       itemTpl: "<div class='server'><div class='status_{status}'></div><div class='name'>{name}</div></div>",
       onItemDisclosure: function (record) {
         // TODO activate
