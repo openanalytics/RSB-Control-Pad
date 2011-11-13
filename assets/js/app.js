@@ -22,7 +22,7 @@
  */
 
 const SERVER_STORE = new Lawnchair({name:'servers', record:'server'}, function() {});
-SERVER_STORE.nuke(); // FIXME remove :) 
+//SERVER_STORE.nuke(); // FIXME remove :) 
  
 Ext.regApplication({
   name: 'app',

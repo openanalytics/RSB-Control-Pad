@@ -46,14 +46,31 @@ app.views.NewServer = Ext.extend(Ext.form.FormPanel, {
         ui: 'action',
         listeners: {
           'tap': function () {
-            // FIXME pass username and password
-            var serverUrl = app.views.newServer.fields.get('new_server_url').getValue();
-            var newRecords = app.stores.servers.add({url: serverUrl});
-            newRecords[0].save();
-            Ext.dispatch({
-              controller: app.controllers.servers,
-              action: 'info',
-              url: serverUrl
+            var fields = app.views.newServer.fields;
+            var url = fields.get('new_server_url').getValue();
+            var username = fields.get('new_server_username').getValue();
+            var password = fields.get('new_server_password').getValue();
+            
+            // TODO show busy cursor
+            // FIXME inject username/password in URL if present
+            Ext.Ajax.request({
+              url:url + '/api/rest/system/info',
+              method: 'GET',
+              headers: {'Accept': 'application/vnd.rsb+json'},
+              success: function (result, request) {                 
+                var nodeInformation = JSON.parse(result.responseText).nodeInformation;
+                var status = nodeInformation.healthy? 'good' : 'bad';
+                var newRecords = app.stores.servers.add({url: url, username: username, password: password, status:status, node_information: nodeInformation});
+                newRecords[0].save();
+                Ext.dispatch({
+                  controller: app.controllers.servers,
+                  action: 'info',
+                  url: url
+                });
+              },
+              failure: function (result, request) {
+                alert('Failed to contact RSB server at the provided URL');
+              } 
             });
           }
         }
@@ -66,7 +83,7 @@ app.views.NewServer = Ext.extend(Ext.form.FormPanel, {
     {
       xtype: 'fieldset',
       title: 'Connection Info',
-      instructions: 'Please enter the information above.',
+      instructions: 'Fields marked * are mandatory.',
       defaults: {
         labelAlign: 'left',
         labelWidth: '30%',
@@ -83,6 +100,7 @@ app.views.NewServer = Ext.extend(Ext.form.FormPanel, {
           required: true
         },
         {
+          id: 'new_server_username',
           xtype: 'textfield',
           name : 'username',
           label: 'Username',
@@ -90,6 +108,7 @@ app.views.NewServer = Ext.extend(Ext.form.FormPanel, {
           autoCapitalize : false,
         },
         {
+          id: 'new_server_password',
           xtype: 'passwordfield',
           name : 'password',
           label: 'Password',

@@ -21,6 +21,8 @@
  *   @author rsb.development@openanalytics.eu
  */
 
+// TODO regularly hit healthcheck on each server and update status accordingly
+ 
 app.views.ServersList = Ext.extend(Ext.Panel, {
   dockedItems: [{
     xtype: 'toolbar',
@@ -50,7 +52,7 @@ app.views.ServersList = Ext.extend(Ext.Panel, {
       xtype: 'list',
       cls: 'server-list',
       store: app.stores.servers,
-      itemTpl: "<div class='server'><div class='status_{status}'></div><div class='name'>{name}</div></div>",
+      itemTpl: "<div class='server'><div class='status_{status}'></div><div class='name'>{node_information.name}</div></div>",
       onItemDisclosure: function(record) {
         Ext.dispatch({
          controller: app.controllers.servers,

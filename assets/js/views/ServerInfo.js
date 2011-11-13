@@ -21,6 +21,8 @@
  *   @author rsb.development@openanalytics.eu
  */
 
+// TODO add refresh button to update server info when clicked
+ 
 app.views.ServerInfo = Ext.extend(Ext.form.FormPanel, {
   dockedItems: [{
     xtype: 'toolbar',
@@ -56,7 +58,7 @@ app.views.ServerInfo = Ext.extend(Ext.form.FormPanel, {
   },
   updateWithRecord: function(record) {
     var toolbar = this.getDockedItems()[0];
-    toolbar.setTitle(record.get('name'));
+    toolbar.setTitle(record.get('node_information').name);
     toolbar.getComponent('back').record = record;
   }
 });

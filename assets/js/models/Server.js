@@ -27,15 +27,9 @@ Ext.data.ProxyMgr.registerType("serverstorage",
       operation.setStarted();
       var server = operation.records[0].data;
       
-      // by default server status is unknown and name is equals to url
-      // these values will change when communication with server happens
-      server.status = 'unknown';
-      server.name = server.url;
-      
       var thisProxy = this;
-      var serverUrl = server.url;
       
-      SERVER_STORE.save({serverUrl: server}, function() {
+      SERVER_STORE.save(server, function() {
         operation.setCompleted();
         operation.setSuccessful();
         if (typeof callback == 'function') {
@@ -57,8 +51,8 @@ Ext.data.ProxyMgr.registerType("serverstorage",
             url: stored_server.url,
             username: stored_server.username,
             password: stored_server.password,
-            name: stored_server.name,
-            status: stored_server.status
+            status: stored_server.status,
+            node_information: stored_server.node_information
           });
           servers.push(server);
         }
@@ -91,8 +85,8 @@ app.models.Server = Ext.regModel("app.models.Server", {
     {name: "url", type: "string"},
     {name: "username", type: "string"},
     {name: "password", type: "string"},
-    {name: "name", type: "string"},
-    {name: "status", type: "string"} // good | bad | unknown
+    {name: "status", type: "string"}, // good | bad | unknown
+    {name: "node_information", type: "object"}
   ],
   proxy: {
       type: "serverstorage"
