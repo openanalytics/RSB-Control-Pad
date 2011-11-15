@@ -24,6 +24,8 @@
 const SERVER_STORE = new Lawnchair({name:'servers', record:'server'}, function() {});
 //SERVER_STORE.nuke(); // FIXME remove :) 
  
+const BASE64 = new Base64();
+
 Ext.regApplication({
   name: 'app',
   
