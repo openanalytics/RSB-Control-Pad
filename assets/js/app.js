@@ -26,6 +26,29 @@ const SERVER_STORE = new Lawnchair({name:'servers', record:'server'}, function()
  
 const BASE64 = new Base64();
 
+function fetchServerInfo(url, username, password, successCallback) {
+  var authHeader = '';
+  if (!Ext.isEmpty(username) && !Ext.isEmpty(password)) {
+    authHeader = 'Basic ' + BASE64.encode(username + ':' + password);
+  }
+            
+  // TODO show busy cursor
+  Ext.Ajax.request({
+    url:url + '/api/rest/system/info',
+    method: 'GET',
+    headers: {'Accept': 'application/vnd.rsb+json',
+              'Authorization': authHeader},
+    success: function (result, request) {                 
+      var nodeInformation = JSON.parse(result.responseText).nodeInformation;
+      var status = nodeInformation.healthy? 'good' : 'bad';
+      successCallback(nodeInformation, status);
+    },
+    failure: function (result, request) {
+      Ext.Msg.alert('Error', 'Failed to contact RSB server at the provided URL', Ext.emptyFn);
+    } 
+  });  
+}
+
 Ext.regApplication({
   name: 'app',
   

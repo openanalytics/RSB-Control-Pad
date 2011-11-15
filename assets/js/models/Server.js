@@ -73,10 +73,12 @@ Ext.data.ProxyMgr.registerType("serverstorage",
     
     update: function(operation, callback, scope) {
       // TODO implement
+      console.log("update server not implemented!");
     },
     
     destroy: function(operation, callback, scope) {
       // TODO implement
+      console.log("destroy server not implemented!");
     }
   })
 );

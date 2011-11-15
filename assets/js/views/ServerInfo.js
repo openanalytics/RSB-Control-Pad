@@ -24,8 +24,10 @@
 // TODO add refresh button to update server info when clicked
  
 app.views.ServerInfo = Ext.extend(Ext.form.FormPanel, {
-  dockedItems: [{
+  dockedItems: [
+  {
     xtype: 'toolbar',
+    dock: 'top',
     title: 'RSB Server',
     items: [
       {
@@ -55,7 +57,41 @@ app.views.ServerInfo = Ext.extend(Ext.form.FormPanel, {
         }
       }
     ]
-  }],
+  },
+  {
+    xtype: 'toolbar',
+    dock: 'bottom',
+    defaults: {
+      iconMask: true,
+      ui: 'plain'
+    },
+    layout: {
+      pack: 'center'
+    },
+    items: [
+      {
+        id: 'refresh',
+        iconCls: 'refresh',
+        listeners: {
+          'tap': function () {
+            var record = this.record;
+            
+            fetchServerInfo(record.data.url, record.data.username, record.data.password,
+              function(nodeInformation, status) {
+                record.data.status = status;
+                record.data.node_information = nodeInformation;
+                record.data.last_updated = new Date();
+                // FIXME this re-creates a new record each time!
+                //record.save();
+                app.views.serverInfo.updateWithRecord(record);
+              }
+            );
+          }
+        }
+      }
+    ]
+  }
+  ],
   scroll: 'vertical',
   submitOnAction: false,
   styleHtmlContent:true,
@@ -101,5 +137,7 @@ app.views.ServerInfo = Ext.extend(Ext.form.FormPanel, {
     });
     var toolbar = this.getDockedItems()[0];
     toolbar.getComponent('edit').record = record;
+    toolbar = this.getDockedItems()[1];
+    toolbar.getComponent('refresh').record = record;
   }
 });

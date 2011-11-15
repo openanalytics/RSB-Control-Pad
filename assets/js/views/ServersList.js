@@ -24,7 +24,8 @@
 // TODO regularly hit healthcheck on each server and update status accordingly
  
 app.views.ServersList = Ext.extend(Ext.Panel, {
-  dockedItems: [{
+  dockedItems: [
+  {
     xtype: 'toolbar',
     title: 'RSB Servers',
     items: [
@@ -45,7 +46,30 @@ app.views.ServersList = Ext.extend(Ext.Panel, {
         }
       }
     ]
-  }],
+  },
+  {
+    xtype: 'toolbar',
+    dock: 'bottom',
+    defaults: {
+      iconMask: true,
+      ui: 'plain'
+    },
+    layout: {
+      pack: 'center'
+    },
+    items: [
+      {
+        iconCls: 'refresh',
+        listeners: {
+          'tap': function () {
+            // TODO implement refreshing status only
+            Ext.Msg.alert('Sorry!', 'Refreshing is not yet implemented.', Ext.emptyFn);
+          }
+        }
+      }
+    ]
+  }
+  ],
   layout: 'fit',
   items: [
     {

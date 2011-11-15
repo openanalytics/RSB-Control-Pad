@@ -51,21 +51,8 @@ app.views.NewServer = Ext.extend(Ext.form.FormPanel, {
             var username = fields.get('new_server_username').getValue();
             var password = fields.get('new_server_password').getValue();
             
-            var authHeader = '';
-            if (!Ext.isEmpty(username) && !Ext.isEmpty(password)) {
-              authHeader = 'Basic ' + BASE64.encode(username + ':' + password);
-            }
-            
-            // TODO show busy cursor
-            // FIXME inject username/password in URL if present
-            Ext.Ajax.request({
-              url:url + '/api/rest/system/info',
-              method: 'GET',
-              headers: {'Accept': 'application/vnd.rsb+json',
-                        'Authorization': authHeader},
-              success: function (result, request) {                 
-                var nodeInformation = JSON.parse(result.responseText).nodeInformation;
-                var status = nodeInformation.healthy? 'good' : 'bad';
+            fetchServerInfo(url, username, password,
+              function(nodeInformation, status) {
                 var newRecords = app.stores.servers.add({url: url,
                                                          username: username,
                                                          password: password,
@@ -78,11 +65,8 @@ app.views.NewServer = Ext.extend(Ext.form.FormPanel, {
                   action: 'info',
                   url: url
                 });
-              },
-              failure: function (result, request) {
-                Ext.Msg.alert('Error', 'Failed to contact RSB server at the provided URL', Ext.emptyFn);
-              } 
-            });
+              }
+            );
           }
         }
       }
