@@ -72,17 +72,17 @@ app.views.ServerInfo = Ext.extend(Ext.form.FormPanel, {
       {
         id: 'refresh',
         iconCls: 'refresh',
+        title: 'Refresh',
         listeners: {
           'tap': function () {
             var record = this.record;
             
             fetchServerInfo(record.data.url, record.data.username, record.data.password,
               function(nodeInformation, status) {
-                record.data.status = status;
-                record.data.node_information = nodeInformation;
-                record.data.last_updated = new Date();
-                // FIXME this re-creates a new record each time!
-                //record.save();
+                record.set({status: status,
+                            node_information: nodeInformation,
+                            last_updated: new Date()});
+                record.save();
                 app.views.serverInfo.updateWithRecord(record);
               }
             );

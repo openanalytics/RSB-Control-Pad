@@ -25,7 +25,10 @@ Ext.data.ProxyMgr.registerType("serverstorage",
   Ext.extend(Ext.data.Proxy, {
     create: function(operation, callback, scope) {
       operation.setStarted();
-      var server = operation.records[0].data;
+      var record = operation.records[0];
+      record.setId(Ext.id({},'server-'));
+      var server = record.data;
+      server.key = record.getId();
       
       var thisProxy = this;
       
@@ -47,7 +50,9 @@ Ext.data.ProxyMgr.registerType("serverstorage",
           
         for (var i = 0; i < stored_servers.length; i++) {
           var stored_server = stored_servers[i];
+          
           var server = new thisProxy.model({
+            id: stored_server.key,
             url: stored_server.url,
             username: stored_server.username,
             password: stored_server.password,
@@ -72,8 +77,20 @@ Ext.data.ProxyMgr.registerType("serverstorage",
     },
     
     update: function(operation, callback, scope) {
-      // TODO implement
-      console.log("update server not implemented!");
+      operation.setStarted();
+      var record = operation.records[0];
+      var server = record.data;
+      server.key = record.getId();
+
+      var thisProxy = this;
+      
+      SERVER_STORE.save(server, function() {
+        operation.setCompleted();
+        operation.setSuccessful();
+        if (typeof callback == 'function') {
+            callback.call(scope || thisProxy, operation);
+        }
+      });
     },
     
     destroy: function(operation, callback, scope) {
@@ -85,6 +102,7 @@ Ext.data.ProxyMgr.registerType("serverstorage",
  
 app.models.Server = Ext.regModel("app.models.Server", {
   fields: [
+    {name: "id", type: "string"},
     {name: "url", type: "string"},
     {name: "username", type: "string"},
     {name: "password", type: "string"},
@@ -98,11 +116,5 @@ app.models.Server = Ext.regModel("app.models.Server", {
 });
 
 app.stores.servers = new Ext.data.Store({
-  model: "app.models.Server",
-  
-  getByUrl: function(url) {
-    return (this.snapshot || this.data).findBy(function(record) {
-      return record.data.url === url;
-    });
-  }
+  model: "app.models.Server"
 });

@@ -81,7 +81,7 @@ app.views.ServersList = Ext.extend(Ext.Panel, {
         Ext.dispatch({
          controller: app.controllers.servers,
          action: 'info',
-         url: record.data.url
+         id: record.getId()
         });
       }
     }    

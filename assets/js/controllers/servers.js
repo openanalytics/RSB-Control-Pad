@@ -27,7 +27,7 @@ app.controllers.servers = new Ext.Controller({
   },
   
   info: function(options) {
-    var server = app.stores.servers.getByUrl(options.url);
+    var server = app.stores.servers.getById(options.id);
     if (server) {
       app.views.serverInfo.updateWithRecord(server);
       app.views.viewport.setActiveItem(app.views.serverInfo, options.animation);

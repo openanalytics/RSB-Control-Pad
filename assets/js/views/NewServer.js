@@ -59,11 +59,11 @@ app.views.NewServer = Ext.extend(Ext.form.FormPanel, {
                                                          status:status,
                                                          node_information: nodeInformation,
                                                          last_updated: new Date()});
-                newRecords[0].save();
+                app.stores.servers.sync();
                 Ext.dispatch({
                   controller: app.controllers.servers,
                   action: 'info',
-                  url: url
+                  id: newRecords[0].getId()
                 });
               }
             );
