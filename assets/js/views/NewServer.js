@@ -60,7 +60,12 @@ app.views.NewServer = Ext.extend(Ext.form.FormPanel, {
               success: function (result, request) {                 
                 var nodeInformation = JSON.parse(result.responseText).nodeInformation;
                 var status = nodeInformation.healthy? 'good' : 'bad';
-                var newRecords = app.stores.servers.add({url: url, username: username, password: password, status:status, node_information: nodeInformation});
+                var newRecords = app.stores.servers.add({url: url,
+                                                         username: username,
+                                                         password: password,
+                                                         status:status,
+                                                         node_information: nodeInformation,
+                                                         last_updated: new Date()});
                 newRecords[0].save();
                 Ext.dispatch({
                   controller: app.controllers.servers,
@@ -69,7 +74,7 @@ app.views.NewServer = Ext.extend(Ext.form.FormPanel, {
                 });
               },
               failure: function (result, request) {
-                alert('Failed to contact RSB server at the provided URL');
+                Ext.Msg.alert('Error', 'Failed to contact RSB server at the provided URL', Ext.emptyFn);
               } 
             });
           }

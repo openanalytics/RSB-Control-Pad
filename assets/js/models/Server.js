@@ -52,7 +52,8 @@ Ext.data.ProxyMgr.registerType("serverstorage",
             username: stored_server.username,
             password: stored_server.password,
             status: stored_server.status,
-            node_information: stored_server.node_information
+            node_information: stored_server.node_information,
+            last_updated: stored_server.last_updated
           });
           servers.push(server);
         }
@@ -86,7 +87,8 @@ app.models.Server = Ext.regModel("app.models.Server", {
     {name: "username", type: "string"},
     {name: "password", type: "string"},
     {name: "status", type: "string"}, // good | bad | unknown
-    {name: "node_information", type: "object"}
+    {name: "node_information", type: "object"},
+    {name: "last_updated", type: "date"}
   ],
   proxy: {
       type: "serverstorage"
