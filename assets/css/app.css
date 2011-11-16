@@ -26,12 +26,19 @@
   background-image: url('../img/toolbarBg.png');
 }
 .x-tabbar-dark {
-  background-image: url('../img/toolbarBg.png');
+  background-image: url('../img/tabbarBg.png');
 }
-.x-panel-body {
+.x-fullscreen {
+  background-color: transparent;
   background-image: url('../img/panelBg.png');
 }
 .x-list {
+  background-color: transparent;
+}
+.x-panel-body {
+  background-color: transparent;
+}
+.x-form .x-panel-body {
   background-color: transparent;
 }
 

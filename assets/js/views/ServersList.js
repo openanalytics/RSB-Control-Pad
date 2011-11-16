@@ -48,18 +48,16 @@ app.views.ServersList = Ext.extend(Ext.Panel, {
     ]
   },
   {
-    xtype: 'toolbar',
+    xtype: 'tabbar',
+    ui: 'dark',
     dock: 'bottom',
-    defaults: {
-      iconMask: true,
-      ui: 'plain'
-    },
     layout: {
       pack: 'center'
     },
     items: [
       {
         iconCls: 'refresh',
+        text: 'Refresh',
         listeners: {
           'tap': function () {
             // TODO implement refreshing status only

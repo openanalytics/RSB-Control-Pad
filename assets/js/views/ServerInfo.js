@@ -55,50 +55,49 @@ app.views.ServerInfo = Ext.extend(Ext.TabPanel, {
           }
         }
       ]
-    },
-    {
-      xtype: 'toolbar',
-      dock: 'bottom',
-      defaults: {
-        iconMask: true,
-        ui: 'plain'
-      },
-      layout: {
-        pack: 'center'
-      },
-      items: [
-        {
-          id: 'refresh',
-          iconCls: 'refresh',
-          title: 'Refresh',
-          listeners: {
-            'tap': function () {
-              var record = this.record;
-              
-              fetchServerInfo(record.data.url, record.data.username, record.data.password,
-                function(nodeInformation, status) {
-                  record.set({status: status,
-                              node_information: nodeInformation,
-                              last_updated: new Date()});
-                  record.save();
-                  app.views.serverInfo.updateWithRecord(record);
-                }
-              );
-            }
-          }
-        }
-      ]
     }
   ],
   tabBar: {
     dock: 'bottom',
-    scroll: {
-      direction: 'horizontal',
-      useIndicators: false
-    },
     layout: {
       pack: 'center'
-    }
+    },
+    items: [
+      {xtype:'spacer'},
+      {
+        id: 'refresh',
+        dock: 'right',
+        iconCls: 'refresh',
+        text: 'Refresh',
+        listeners: {
+          'tap': function () {
+            var record = this.record;
+            
+            fetchServerInfo(record.data.url, record.data.username, record.data.password,
+              function(nodeInformation, status) {
+                record.set({status: status,
+                            node_information: nodeInformation,
+                            last_updated: new Date()});
+                record.save();
+                app.views.serverInfo.updateWithRecord(record);
+              }
+            );
+          }
+        }
+      },
+      {
+        id: 'settings',
+        dock: 'right',
+        iconCls: 'settings',
+        text: 'Settings',
+        listeners: {
+          'tap': function () {
+            // TODO implement settings panel
+            Ext.Msg.alert('Sorry!', 'Settings is not yet implemented.', Ext.emptyFn);
+          }
+        }
+      }
+    ]
   },
   layout: 'fit',
   items: [
