@@ -111,9 +111,9 @@ app.views.ServerInfo = Ext.extend(Ext.TabPanel, {
         submitOnAction: false,
         items: [ 
           {tpl:[
-            '<h4>Settings</h4>',
-            '<div class="field"><span class="label">URL: </span>{url}</div>'
-            // TODO display a lock if server is username/password secured
+            '<h4>Connection</h4>',
+            '<div class="field"><span class="label">URL: </span>{url}</div>',
+            '<tpl if="username.length"><div class="field"><span class="label"><div class="lock_icon"></div></span>Password protected</div></tpl>'
           ]},
           {tpl:[
             '<h4>Information</h4>',
@@ -132,11 +132,42 @@ app.views.ServerInfo = Ext.extend(Ext.TabPanel, {
             '<div class="field"><span class="label">Load avg:</span>{node_information.osLoadAverage}</div>',
           ]},
           {tpl:[
+            '<div class="footnote">Last updated: {last_updated}</div>'
+          ]}
+        ]
+      }
+    },
+    {
+      iconCls: 'chart2',
+      title: 'Statistics',
+      items: {
+        xtype: 'formpanel',
+        scroll: 'vertical',
+        styleHtmlContent:true,
+        submitOnAction: false,
+        items: [ 
+          {tpl:[
             '<h4>Applications</h4>',
             '<div class="field">TBD...</div>'
           ]},
           {tpl:[
             '<div class="footnote">Last updated: {last_updated}</div>'
+          ]}
+        ]
+      }
+    },
+    {
+      iconCls: 'magic',
+      title: 'Control',
+      items: {
+        xtype: 'formpanel',
+        scroll: 'vertical',
+        styleHtmlContent:true,
+        submitOnAction: false,
+        items: [ 
+          {tpl:[
+            '<h4>Control</h4>',
+            '<div class="field">TBD...</div>'
           ]}
         ]
       }

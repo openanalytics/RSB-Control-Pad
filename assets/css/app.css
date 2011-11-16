@@ -42,6 +42,18 @@
   background-color: transparent;
 }
 
+.x-tab img.magic, .x-button img.x-icon-mask.magic {
+	-webkit-mask-image:url('../img/magic.png'); 
+}
+
+.x-tab img.chart2, .x-button img.x-icon-mask.chart2 {
+	-webkit-mask-image:url('../img/chart2.png'); 
+}
+
+.x-list-item {
+  background: white;
+}
+
 /* App specific */
 h4 {
     background: #F7F7F7;
@@ -103,6 +115,18 @@ h4 {
   float:left;
   overflow: visible;
   -webkit-mask: 0 0 url('../img/statusBad.png') no-repeat;
+  -webkit-mask-size: 1.3em;
+  background-color: #005500;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #550000), color-stop(2%, #AA0000), color-stop(100%, #550000));
+  background-image: linear-gradient(#550000, #AA0000 2%, #550000);
+  width: 1.3em;
+  height: 1.3em;
+}
+
+.lock_icon {
+  float:right;
+  overflow: visible;
+  -webkit-mask: 0 0 url('../img/lockClosed.png') no-repeat;
   -webkit-mask-size: 1.3em;
   background-color: #005500;
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #550000), color-stop(2%, #AA0000), color-stop(100%, #550000));

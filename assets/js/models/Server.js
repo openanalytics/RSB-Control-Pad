@@ -94,7 +94,7 @@ Ext.data.ProxyMgr.registerType("serverstorage",
     },
     
     destroy: function(operation, callback, scope) {
-      // TODO implement
+      // TODO implement delete server
       console.log("destroy server not implemented!");
     }
   })
