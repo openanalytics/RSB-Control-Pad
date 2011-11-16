@@ -21,8 +21,6 @@
  *   @author rsb.development@openanalytics.eu
  */
 
-// TODO add refresh button to update server info when clicked
- 
 app.views.ServerInfo = Ext.extend(Ext.TabPanel, {
   dockedItems: [
     {

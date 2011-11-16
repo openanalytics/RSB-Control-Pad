@@ -25,6 +25,15 @@
 .x-toolbar-dark {
   background-image: url('../img/toolbarBg.png');
 }
+.x-tabbar-dark {
+  background-image: url('../img/toolbarBg.png');
+}
+.x-panel-body {
+  background-image: url('../img/panelBg.png');
+}
+.x-list {
+  background-color: transparent;
+}
 
 /* App specific */
 h4 {
@@ -52,10 +61,6 @@ h4 {
 }
 .footnote {
     font-size: 70%;
-}
-    
-.server-list {
-  background-image: url('../img/panelBg.png');
 }
 
 .server .name {
