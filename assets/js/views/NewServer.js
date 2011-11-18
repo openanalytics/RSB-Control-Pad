@@ -77,7 +77,7 @@ app.views.NewServer = Ext.extend(Ext.form.FormPanel, {
   items: [
     {
       xtype: 'fieldset',
-      title: 'Connection Info',
+      title: 'Connection',
       instructions: 'Fields marked * are mandatory.',
       defaults: {
         labelAlign: 'left',
