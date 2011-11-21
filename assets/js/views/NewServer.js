@@ -22,6 +22,15 @@
  */
 
 app.views.NewServer = Ext.extend(Ext.form.FormPanel, {
+    
+  handleBackAction: function() {
+    Ext.dispatch({
+      controller: app.controllers.servers,
+      action: 'list',
+      animation: {type:'slide', direction:'right'}
+    });
+  },
+    
   dockedItems: [{
     xtype: 'toolbar',
     title: 'New Server',
@@ -31,11 +40,7 @@ app.views.NewServer = Ext.extend(Ext.form.FormPanel, {
         ui: 'back',
         listeners: {
           'tap': function () {
-            Ext.dispatch({
-              controller: app.controllers.servers,
-              action: 'list',
-              animation: {type:'slide', direction:'right'}
-            });
+            app.views.newServer.handleBackAction();
           }
         }
       },

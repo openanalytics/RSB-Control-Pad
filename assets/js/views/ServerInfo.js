@@ -22,6 +22,15 @@
  */
 
 app.views.ServerInfo = Ext.extend(Ext.TabPanel, {
+    
+  handleBackAction: function() {
+    Ext.dispatch({
+      controller: app.controllers.servers,
+      action: 'list',
+      animation: {type:'slide', direction:'right'}
+    });
+  },
+  
   dockedItems: [
     {
       xtype: 'toolbar',
@@ -34,11 +43,7 @@ app.views.ServerInfo = Ext.extend(Ext.TabPanel, {
           ui: 'back',
           listeners: {
             'tap': function () {
-              Ext.dispatch({
-                controller: app.controllers.servers,
-                action: 'list',
-                animation: {type:'slide', direction:'right'}
-              });
+              app.views.serverInfo.handleBackAction();
             }
           }
         },

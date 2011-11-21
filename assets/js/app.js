@@ -49,6 +49,13 @@ function fetchServerInfo(url, username, password, successCallback) {
   });  
 }
 
+function callViewAction(actionName) {
+  var action = app.views.viewport.getActiveItem()[actionName];
+  if (typeof(action) == 'function') {
+    action();
+  }
+}
+
 Ext.regApplication({
   name: 'app',
   
@@ -58,7 +65,6 @@ Ext.regApplication({
   },
   
   mainLaunch: function() {
-    // TODO handle Android back and menu buttons
     var devMode = (navigator.userAgent.indexOf('Chrome') > -1);
     if (!this.launched) return;
     if (!devMode && !device) {
@@ -66,5 +72,23 @@ Ext.regApplication({
     }
     
     this.views.viewport = new this.views.Viewport();
+    
+    if (devMode) {
+      // bind listeners to F9 -> F12 to simulate Android menu, home, back and search keys
+      Ext.EventManager.addListener(document, 'keyup', function(event, element, object) {
+        if (event && event.browserEvent) {
+          switch (event.browserEvent.keyIdentifier) {
+            case 'F6': callViewAction('handleMenuAction'); break;
+            case 'F7': callViewAction('handleHomeAction'); break;
+            case 'F8': callViewAction('handleBackAction'); break;
+            case 'F9': callViewAction('handleSearchAction'); break;
+          }
+        }
+      });
+    } else {
+      // bind listeners to supported phone button events
+      document.addEventListener("backbutton", function() { callViewAction('handleBackAction') }, false);
+      document.addEventListener("menubutton", function() { callViewAction('handleMenuAction') }, false);
+    }
   }
 });
